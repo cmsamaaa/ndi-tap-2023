@@ -6,9 +6,9 @@ For this technical assessment, I will be developing a fullstack project. This pr
 statement defined below, written in Node.js with JavaScript, using Pug template engine, Express.js framework for
 backend, and basic data storage with SQLite.
 
-#### Author: Loh Chun Mun
-
 This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.herokuapp.com/).
+
+#### Author: Loh Chun Mun
 
 ## Table of Contents
 
