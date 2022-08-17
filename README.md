@@ -16,12 +16,18 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Proposed Solution](#proposed-solution)
 - [Architecture](#architecture)
 - [Wireframe](#wireframe)
-- [Run the Application](#run-the-application)
+- [Start the Application](#start-the-application)
+    1. [Node](#1-node)
+    2. [Docker](#2-docker)
 - [Setup Guide (Local)](#setup-guide-local)
     1. [Node.js](#1-nodejs)
     2. [Docker (Optional)](#2-docker-optional)
     3. [Process Environment Variables (Optional)](#3-process-environment-variables-env-optional)
 - [npm Commands](#npm-commands)
+    - [npm ci](#npm-ci)
+    - [npm start](#npm-start)
+    - [npm run dev](#npm-run-dev)
+    - [npm run test](#npm-run-test)
 - [Dependencies](#dependencies)
 - [Unit Test](#unit-test)
 - [CI/CD Pipeline](#cicd)
@@ -81,23 +87,40 @@ To be added...
 
 To be added...
 
-## Run the Application
+## Start the Application
 
-Please choose only of the following method of your choice. Once the application is running, you may access the app
-through `localhost:3000`. If you have issues with running the application, please refer to
-the [setup guide](#setup-guide-local) below.
+Choose only of the two following methods below to start the app. Once the app is running, you should be able to access
+it via `http://localhost:3000`. If you have issues with starting or running the app, please refer
+to the [setup guide](#setup-guide-local) below.
 
-### 1. node
+### 1. Node
 
-You will only need to run the following command:
+A batch and shell script has been created for your convenience. The script will attempt to set any process environment
+variables before executing `npm start`. Remember to run `npm ci` in the before executing the batch or shell script. You
+may find out more about the npm commands [here](#npm-commands).
+
+You may simply execute the following command to start the application:
+
+#### For Windows
 
 ```shell
 .\start.bat
 ```
 
+#### For Linux/MacOS
+
+```shell
+./start.sh
+```
+
+> **NOTE:** Uncomment the `PORT` in the batch or shell script to set the application to run on an available port of your
+> choice.
+
 ### 2. Docker
 
-You will only need to run the following two commands, one after another:
+Execute the two following commands, one after another:
+
+#### For Windows
 
 ```shell
 # docker build -t <name_for_image> .
@@ -105,6 +128,16 @@ docker build -t ndi-tap-2023 .
 
 # docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
 docker run -d -p 3000:3000 ndi-tap-2023
+```
+
+#### For Linux/MacOS
+
+```shell
+# sudo docker build -t <name_for_image> .
+sudo docker build -t ndi-tap-2023 .
+
+# sudo docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
+sudo docker run -d -p 3000:3000 ndi-tap-2023
 ```
 
 ## Setup Guide (Local)
