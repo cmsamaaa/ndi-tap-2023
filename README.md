@@ -12,11 +12,11 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 
 ## Table of Contents
 
-- [Run the Application](#run-the-application)
 - [Problem Statement](#problem-statement)
 - [Proposed Solution](#proposed-solution)
 - [Architecture](#architecture)
 - [Wireframe](#wireframe)
+- [Run the Application](#run-the-application)
 - [Setup Guide (Local)](#setup-guide-local)
     1. [Node.js](#1-nodejs)
     2. [Docker (Optional)](#2-docker-optional)
@@ -25,32 +25,6 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Dependencies](#dependencies)
 - [Unit Test](#unit-test)
 - [CI/CD Pipeline](#cicd)
-
-## Run the Application
-
-Please choose only of the following method of your choice. Once the application is running, you may access the app
-through `localhost:3000`. If you have issues with running the application, please refer to
-the [setup guide](#setup-guide-local) below.
-
-### 1. node
-
-You will only need to run the following command:
-
-```shell
-.\start.bat
-```
-
-### 2. Docker
-
-You will only need to run the following two commands, one after another:
-
-```shell
-# docker build -t <name_for_image> .
-docker build -t ndi-tap-2023 .
-
-# docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
-docker run -d -p 3000:3000 ndi-tap-2023
-```
 
 ## Problem Statement
 
@@ -106,6 +80,32 @@ To be added...
 ## Wireframe
 
 To be added...
+
+## Run the Application
+
+Please choose only of the following method of your choice. Once the application is running, you may access the app
+through `localhost:3000`. If you have issues with running the application, please refer to
+the [setup guide](#setup-guide-local) below.
+
+### 1. node
+
+You will only need to run the following command:
+
+```shell
+.\start.bat
+```
+
+### 2. Docker
+
+You will only need to run the following two commands, one after another:
+
+```shell
+# docker build -t <name_for_image> .
+docker build -t ndi-tap-2023 .
+
+# docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
+docker run -d -p 3000:3000 ndi-tap-2023
+```
 
 ## Setup Guide (Local)
 
@@ -185,6 +185,7 @@ summarised list taken from [package.json](./package.json):
         "body-parser": "^1.20.0",
         "cors": "^2.8.5",
         "express": "^4.18.1",
+        "knex": "^2.2.0",
         "pug": "^3.0.2",
         "sqlite3": "^5.0.11"
     },
