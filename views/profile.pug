@@ -4,6 +4,7 @@ html
         meta(name='viewport', content='width=device-width, initial-scale=1')
         title #{firstName} #{lastName}
         link(rel='stylesheet', href='/css/custom.css')
+        link(rel='stylesheet', href='/css/profile.css')
         link(rel='stylesheet', href='/css/bootstrap.min.css')
         script(type='text/javascript', src='/js/jquery.min.js')
     body
@@ -18,14 +19,14 @@ html
                                 img.profile-image(src='/img/man-silhoutte.jpg')
                         div.col-8.my-auto
                             div.row
-                                div.col.fw-bold Identification Code
-                                div.col #{code}
+                                div.col-5.fw-bold Identification Code
+                                div.col-7 #{code}
                             div.row
-                                div.col.fw-bold Name
-                                div.col #{firstName} #{lastName}
+                                div.col-5.fw-bold Name
+                                div.col-7 #{firstName} #{lastName}
                             div.row
-                                div.col.fw-bold Gender
-                                div.col #{gender}
+                                div.col-5.fw-bold Gender
+                                div.col-7 #{gender}
                             div.row
                                 div.col
                                     br
