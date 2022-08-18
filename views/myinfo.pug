@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        title Home | IdentifyMe
+        include includes/head
+    body
+        include includes/navbar
+        div.container.text-start.mt-5
+            form(action=api_endpoint, method='POST')
+                div.row
+                    h3.mb-4 Register with <span class="label">MyInfo</span>
+                div.row.mb-5
+                    div.col-12
+                        div.card.h-100
+                            h4.card-title.ms-4.mt-4.label-light Personal Information
+                            hr.d-flex.mx-auto(style='width: 95%')
+                            div.card-body
+                                div
+                                    label.form-label(for='tb_nric') NRIC
+                                    input#tb_nric.form-control.mb-3.disabled(type='text', name='nric', value=profile.nric, readonly=true)
+                                div
+                                    label.form-label(for='tb_fullName') Full Name
+                                    input#tb_fullName.form-control.mb-3.disabled(type='text', name='fullName', value=profile.fullName, readonly=true)
+                                div
+                                    label.form-label(for='tb_sex') Sex
+                                    input#tb_sex.form-control.mb-3.disabled(type='text', name='sex', value=profile.sex, readonly=true)
+                                div
+                                    label.form-label(for='tb_race') Race
+                                    input#tb_race.form-control.mb-3.disabled(type='text', name='race', value=profile.race, readonly=true)
+                                div
+                                    label.form-label(for='tb_email') Email
+                                    input#tb_email.form-control.disabled(type='email', name='email', value=profile.email, readonly=true)
+
+                div.d-flex.justify-content-center
+                    input#tb_code.form-control(type='hidden', name='code', value=profile.code)
+                    input(type='submit', class='btn btn-custom', value='Submit Application')

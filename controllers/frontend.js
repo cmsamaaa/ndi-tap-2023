@@ -1,4 +1,5 @@
 const request = require('request');
+const generate_person = require('../lib/generate_person');
 const HTTP_STATUS = require("../constants/http_status");
 
 exports.viewIndex = async (req, res, next) => {
@@ -51,5 +52,18 @@ exports.verify = async (req, res, next) => {
 exports.register = async (req, res, next) => {
     res.status(HTTP_STATUS.OK).render('register', {
         path: '/register'
+    });
+};
+
+exports.myinfo = async (req, res, next) => {
+    // api endpoint
+    const host = req.protocol + '://' + req.hostname + ':' + process.env.PORT;
+    const endpoint = '/api/createProfile/';
+
+    const profile = generate_person.random_individual();
+
+    res.status(HTTP_STATUS.OK).render('myinfo', {
+        api_endpoint: host + endpoint,
+        profile: profile
     });
 };
