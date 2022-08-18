@@ -4,6 +4,7 @@ const frontendController = require('../controllers/frontend');
 
 const router = express.Router();
 
-router.get('/viewProfile/:code', frontendController.viewProfile);
+router.get('/viewProfile', frontendController.viewProfile);
+router.get('/verifyProfile', frontendController.verifyProfile);
 
 module.exports = router;
