@@ -21,7 +21,7 @@ exports.viewProfile = async (req, res, next) => {
                 organisation: result.organisation,
                 title: result.gender === "Male" ? "Mr." : "Ms."
             }
-            res.status(HTTP_STATUS.OK).render('profile', profile);
+            res.status(HTTP_STATUS.OK).render('profileCard', profile);
         } else
             res.status(HTTP_STATUS.NOT_FOUND).redirect('/verifyProfile?result=false&search=' + req.query.code);
     });
