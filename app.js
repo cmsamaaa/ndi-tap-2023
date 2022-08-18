@@ -7,6 +7,7 @@ const logger = require('morgan');
 const errorController = require('./controllers/error');
 
 const frontendRoutes = require('./routes/frontend');
+const backendRoutes = require('./routes/backend');
 const apiRoutes = require('./routes/api');
 
 const PORT = process.env.PORT || 3000;
@@ -38,6 +39,9 @@ app.use(cors(corsOptions));
 
 // frontend route
 app.use('/', frontendRoutes);
+
+// backend route
+app.use('/submit', backendRoutes);
 
 // api endpoint route
 app.use('/api', apiRoutes);

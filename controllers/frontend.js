@@ -36,29 +36,33 @@ exports.viewProfile = async (req, res, next) => {
 };
 
 exports.verify = async (req, res, next) => {
-    if (!req.query.search && !req.query.result) {
+    if (!req.query.search && !req.query.result)
         res.status(HTTP_STATUS.OK).render('verify', {
             path: '/verify'
         });
-    }
-    else {
+    else
         res.status(HTTP_STATUS.NOT_FOUND).render('verify', {
             path: '/verify',
             search: req.query.search,
             message: 'This identification code is invalid.'
         });
-    }
 };
 
 exports.register = async (req, res, next) => {
-    res.status(HTTP_STATUS.OK).render('register', {
-        path: '/register'
-    });
+    if (!req.query.result)
+        res.status(HTTP_STATUS.OK).render('register', {
+            path: '/register'
+        });
+    else
+        res.status(HTTP_STATUS.BAD_REQUEST).render('register', {
+            path: '/register',
+            message: 'An error occurred while trying to create your identification profile.'
+        });
 };
 
 exports.myinfo = async (req, res, next) => {
     // api endpoint uri
-    const uri = parse_uri.parse(req, '/submit/register-individual/');
+    const uri = parse_uri.parse(req, '/submit/register/');
 
     // generate fake person info
     const profile = generate_person.random_individual();
@@ -71,7 +75,7 @@ exports.myinfo = async (req, res, next) => {
 
 exports.myinfoBusiness = async (req, res, next) => {
     // api endpoint uri
-    const uri = parse_uri.parse(req, '/api/createProfile/');
+    const uri = parse_uri.parse(req, '/submit/register/');
 
     // generate fake person + entity info
     const profile = generate_person.random_entity_individual();
