@@ -6,10 +6,10 @@ const db = require('./db');
 // 	"fullName"	TEXT NOT NULL,
 // 	"sex"	TEXT NOT NULL,
 // 	"race"	TEXT NOT NULL,
-// 	"email"	TEXT,
-// 	"nric"	TEXT NOT NULL,
+// 	"email"	TEXT NOT NULL UNIQUE,
+// 	"nric"	TEXT NOT NULL UNIQUE,
 // 	"entityName"	TEXT,
-// 	"UEN"	TEXT,
+// 	"UEN"	TEXT UNIQUE,
 // 	PRIMARY KEY("id" AUTOINCREMENT)
 // );
 
