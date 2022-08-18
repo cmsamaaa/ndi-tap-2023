@@ -19,10 +19,14 @@
   "homepage": "https://github.com/cmsamaaa/ndi-tap-2023#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "bootstrap": "^5.2.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "jquery": "^3.6.0",
     "knex": "^2.2.0",
+    "morgan": "^1.10.0",
     "pug": "^3.0.2",
+    "request": "^2.88.2",
     "sqlite3": "^5.0.11"
   },
   "devDependencies": {
