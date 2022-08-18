@@ -58,13 +58,13 @@ exports.register = async (req, res, next) => {
 
 exports.myinfo = async (req, res, next) => {
     // api endpoint uri
-    const uri = parse_uri.parse(req, '/api/createProfile/');
+    const uri = parse_uri.parse(req, '/submit/register-individual/');
 
     // generate fake person info
     const profile = generate_person.random_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfo', {
-        api_uri: uri,
+        action_uri: uri,
         profile: profile
     });
 };
@@ -77,7 +77,7 @@ exports.myinfoBusiness = async (req, res, next) => {
     const profile = generate_person.random_entity_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfoBusiness', {
-        api_uri: uri,
+        action_uri: uri,
         profile: profile
     });
 };
