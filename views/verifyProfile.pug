@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title #{firstName} #{lastName}
+        link(rel='stylesheet', href='/css/custom.css')
+        link(rel='stylesheet', href='/css/form.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        script(type='text/javascript', src='/js/jquery.min.js')
+    body
+        div.container.text-start.d-flex.justify-content-center.mt-5
+            div.verify-form
+                div.row
+                    h3.label.mb-4 Verify Profile
+                if message
+                    div.alert.alert-danger.d-flex.align-items-center(role='alert')
+                        div <strong>Beware!</strong> #{message}
+                div.row
+                    form(action='/viewProfile', method='GET')
+                        label.form-label(for='tb_code') Identification Code
+                        div.input-group
+                            input#tb_code(type='text', name='code', class='form-control', placeholder='SGZ12345678', value=search)
+                            input(type='submit', class='btn btn-custom')

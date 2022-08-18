@@ -2,3 +2,14 @@
     color: #d93128;
     font-weight: bold;
 }
+
+.btn.btn-custom {
+    background-color: #afc1c5;
+    color: black;
+}
+
+.btn.btn-custom:hover,
+.btn.btn-custom:active {
+    background-color: #67878E;
+    color: #fff;
+}
