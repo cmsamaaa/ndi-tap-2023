@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title #{firstName} #{lastName}
+        link(rel='stylesheet', href='/css/custom.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        script(type='text/javascript', src='/js/jquery.min.js')
+    body
+        div.container.text-start.d-flex.justify-content-center.mt-5
+            div.card.profile-card
+                div.profile-banner
+                    img.card-img-top(src='/img/IdentifyMe-logo.png')
+                div.card-body
+                    div.row
+                        div.col-4
+                            div.row.mx-auto.justify-content-center
+                                img.profile-image(src='/img/man-silhoutte.jpg')
+                        div.col-8.my-auto
+                            div.row
+                                div.col.fw-bold Identification Code
+                                div.col #{code}
+                            div.row
+                                div.col.fw-bold Name
+                                div.col #{firstName} #{lastName}
+                            div.row
+                                div.col.fw-bold Gender
+                                div.col #{gender}
+                            div.row
+                                div.col
+                                    br
+                    div.row
+                        if organisation
+                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a representative of <b>#{organisation}</b>, registered with <span class="label">IdentifyMe</span>.
+                        else
+                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a registered individual with <span class="label">IdentifyMe</span>.
