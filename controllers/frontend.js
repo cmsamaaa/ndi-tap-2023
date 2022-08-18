@@ -1,6 +1,6 @@
 const request = require('request');
 const generate_person = require('../lib/generate_person');
-const api_endpoint = require('../lib/api_endpoint');
+const parse_uri = require('../lib/parse_uri');
 const HTTP_STATUS = require("../constants/http_status");
 
 exports.viewIndex = async (req, res, next) => {
@@ -17,7 +17,7 @@ exports.viewProfile = async (req, res, next) => {
     }
 
     // api endpoint uri
-    const uri = api_endpoint.parse(req, '/api/getProfile/');
+    const uri = parse_uri.parse(req, '/api/getProfile/');
     request(uri + req.query.code, (error, response, body) => {
         if (body) {
             const result = JSON.parse(body);
@@ -58,7 +58,7 @@ exports.register = async (req, res, next) => {
 
 exports.myinfo = async (req, res, next) => {
     // api endpoint uri
-    const uri = api_endpoint.parse(req, '/api/createProfile/');
+    const uri = parse_uri.parse(req, '/api/createProfile/');
 
     // generate fake person info
     const profile = generate_person.random_individual();
@@ -71,7 +71,7 @@ exports.myinfo = async (req, res, next) => {
 
 exports.myinfoBusiness = async (req, res, next) => {
     // api endpoint uri
-    const uri = api_endpoint.parse(req, '/api/createProfile/');
+    const uri = parse_uri.parse(req, '/api/createProfile/');
 
     // generate fake person + entity info
     const profile = generate_person.random_entity_individual();
