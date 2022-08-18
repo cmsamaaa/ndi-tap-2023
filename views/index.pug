@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title Home | IdentifyMe
+        link(rel='stylesheet', href='/css/custom.css')
+        link(rel='stylesheet', href='/css/form.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        script(type='text/javascript', src='/js/jquery.min.js')
+    body
+        div.container.text-start.mt-5
+            div.row
+                h3.label.mb-4 IdentifyMe
+            div.row
+                div.col-8.mb-4
+                    span IdentifyMe is an identification system for Singaporean citizens to be assured that they are engaged by a legitimate personnel as claimed by the individual, or individuals representing entities to guarantee their identity to their customers. Use <span class="label">IdentityMe</span> to deter yourself from possibly falling for a scam.
+            div.row
+                div.col-6
+                    div.card.h-100
+                        h4.card-title.text-center.mt-4.label Verify an Identity
+                        div.card-body.text-center
+                            div.mb-4
+                                a.btn.btn-custom(href='/verifyProfile') Verify Now
+                            div Be sure about who you are talking to. Verify their identity.
+                div.col-6
+                    div.card.h-100
+                        h4.card-title.text-center.mt-4.label Apply for Identification
+                        div.card-body.text-center
+                            div.mb-4
+                                a.btn.btn-custom(href='/register') Apply Here
+                            div For individuals representing an entity, with authorised access to <span class="label">Corppass</span>.
