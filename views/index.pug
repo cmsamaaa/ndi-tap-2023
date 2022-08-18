@@ -1,13 +1,10 @@
 doctype html
 html
     head
-        meta(name='viewport', content='width=device-width, initial-scale=1')
         title Home | IdentifyMe
-        link(rel='stylesheet', href='/css/custom.css')
-        link(rel='stylesheet', href='/css/form.css')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        script(type='text/javascript', src='/js/jquery.min.js')
+        include includes/head
     body
+        include includes/navbar
         div.container.text-start.mt-5
             div.row
                 h3.label.mb-4 IdentifyMe
@@ -20,12 +17,12 @@ html
                         h4.card-title.text-center.mt-4.label Verify an Identity
                         div.card-body.text-center
                             div.mb-4
-                                a.btn.btn-custom(href='/verifyProfile') Verify Now
+                                a.btn.btn-custom(href='/verify') Verify Now
                             div Be sure about who you are talking to. Verify their identity.
                 div.col-6
                     div.card.h-100
                         h4.card-title.text-center.mt-4.label Apply for Identification
                         div.card-body.text-center
                             div.mb-4
-                                a.btn.btn-custom(href='/register') Apply Here
+                                a.btn.btn-custom(href='/register') Register Here
                             div For individuals representing an entity, with authorised access to <span class="label">Corppass</span>.

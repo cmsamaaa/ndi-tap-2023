@@ -2,7 +2,9 @@ const request = require('request');
 const HTTP_STATUS = require("../constants/http_status");
 
 exports.viewIndex = async (req, res, next) => {
-    res.status(HTTP_STATUS.OK).render('index');
+    res.status(HTTP_STATUS.OK).render('index', {
+        path: '/'
+    });
 };
 
 exports.viewProfile = async (req, res, next) => {
@@ -23,21 +25,24 @@ exports.viewProfile = async (req, res, next) => {
                 lastName: result.lastName,
                 sex: result.sex,
                 race: result.race,
-                organisation: result.organisation,
+                entityName: result.entityName,
                 title: result.sex === "Male" ? "Mr." : "Ms."
-            }
+            };
             res.status(HTTP_STATUS.OK).render('profileCard', profile);
         } else
             res.status(HTTP_STATUS.NOT_FOUND).redirect('/verifyProfile?result=false&search=' + req.query.code);
     });
 };
 
-exports.verifyProfile = async (req, res, next) => {
+exports.verify = async (req, res, next) => {
     if (!req.query.search && !req.query.result) {
-        res.status(HTTP_STATUS.OK).render('verifyProfile');
+        res.status(HTTP_STATUS.OK).render('verify', {
+            path: '/verify'
+        });
     }
     else {
-        res.status(HTTP_STATUS.NOT_FOUND).render('verifyProfile', {
+        res.status(HTTP_STATUS.NOT_FOUND).render('verify', {
+            path: '/verify',
             search: req.query.search,
             message: 'This identification code is invalid.'
         });
@@ -45,5 +50,7 @@ exports.verifyProfile = async (req, res, next) => {
 };
 
 exports.register = async (req, res, next) => {
-    res.status(HTTP_STATUS.OK).render('register');
+    res.status(HTTP_STATUS.OK).render('register', {
+        path: '/register'
+    });
 };

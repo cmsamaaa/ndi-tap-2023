@@ -1,13 +1,11 @@
 doctype html
 html
     head
-        meta(name='viewport', content='width=device-width, initial-scale=1')
         title #{firstName} #{lastName} | IdentifyMe
-        link(rel='stylesheet', href='/css/custom.css')
+        include includes/head
         link(rel='stylesheet', href='/css/profile.css')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        script(type='text/javascript', src='/js/jquery.min.js')
     body
+        include includes/navbar
         div.container.text-start.d-flex.justify-content-center.mt-5
             div.card.profile-card
                 div.profile-banner
@@ -34,7 +32,7 @@ html
                                 div.col
                                     br
                     div.row
-                        if organisation
-                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a representative of <b>#{organisation}</b>, registered with <span class="label">IdentifyMe</span>.
+                        if entityName
+                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a representative of <b>#{entityName}</b>, registered with <span class="label">IdentifyMe</span>.
                         else
                             div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a registered individual with <span class="label">IdentifyMe</span>.
