@@ -5,9 +5,11 @@ const db = require('./db');
 // 	"code"	TEXT NOT NULL UNIQUE,
 // 	"firstName"	TEXT NOT NULL,
 // 	"lastName"	TEXT NOT NULL,
-// 	"gender"	TEXT NOT NULL,
+// 	"sex"	TEXT NOT NULL,
 // 	"nric"	TEXT NOT NULL,
-// 	"organisation"	TEXT,
+// 	"race"	TEXT NOT NULL,
+// 	"entityName"	TEXT,
+// 	"UEN"	TEXT,
 // 	PRIMARY KEY("id" AUTOINCREMENT)
 // );
 

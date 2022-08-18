@@ -17,9 +17,10 @@ exports.viewProfile = async (req, res, next) => {
                 code: result.code,
                 firstName: result.firstName,
                 lastName: result.lastName,
-                gender: result.gender,
+                sex: result.sex,
+                race: result.race,
                 organisation: result.organisation,
-                title: result.gender === "Male" ? "Mr." : "Ms."
+                title: result.sex === "Male" ? "Mr." : "Ms."
             }
             res.status(HTTP_STATUS.OK).render('profileCard', profile);
         } else
