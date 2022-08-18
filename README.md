@@ -179,13 +179,15 @@ Docker [here](https://docs.docker.com/desktop/install/windows-install/).
 Before running the app and unit test, you may configure the following optional process environment variable(s).
 
 ```
+URI_IGNORE_PORT=0
 PORT=3000
 ```
 
-| Parameters    | Type     | Description                                                                              |
-|:--------------|:---------|:-----------------------------------------------------------------------------------------|
-| `PORT`        | `Number` | **Optional**. Specify the port that your app will run on. On default, it is set to 3000. |
-|               |          |                                                                                          |
+| Parameters        | Type     | Description                                                                                                                                                                                       |
+|:------------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `URI_IGNORE_PORT` | `Number` | **Required**. Set `1` if the port is not required. By default, you should set to `0` when running locally or when the port is necessary. Live deployment may require this value to be set to `1`. |
+| `PORT`            | `Number` | **Optional**. Specify the port that your app will run on. By default, it is set to 3000.                                                                                                          |
+
 
 ## npm Commands
 
