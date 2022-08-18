@@ -67,3 +67,16 @@ exports.myinfo = async (req, res, next) => {
         profile: profile
     });
 };
+
+exports.myinfoBusiness = async (req, res, next) => {
+    // api endpoint
+    const host = req.protocol + '://' + req.hostname + ':' + process.env.PORT;
+    const endpoint = '/api/createProfile/';
+
+    const profile = generate_person.random_entity_individual();
+
+    res.status(HTTP_STATUS.OK).render('myinfoBusiness', {
+        api_endpoint: host + endpoint,
+        profile: profile
+    });
+};

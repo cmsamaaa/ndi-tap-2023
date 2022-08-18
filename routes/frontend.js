@@ -9,5 +9,6 @@ router.get('/viewProfile', frontendController.viewProfile);
 router.get('/verify', frontendController.verify);
 router.get('/register', frontendController.register);
 router.get('/myinfo', frontendController.myinfo);
+router.get('/myinfoBusiness', frontendController.myinfoBusiness);
 
 module.exports = router;

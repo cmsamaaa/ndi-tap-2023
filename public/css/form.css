@@ -9,4 +9,5 @@
 .form-control.disabled {
     background-color: #e9ecef;
     opacity: 1;
+    cursor: not-allowed;
 }
