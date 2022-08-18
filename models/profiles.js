@@ -3,11 +3,11 @@ const db = require('./db');
 // CREATE TABLE "profiles" (
 // 	"id"	INTEGER NOT NULL,
 // 	"code"	TEXT NOT NULL UNIQUE,
-// 	"firstName"	TEXT NOT NULL,
-// 	"lastName"	TEXT NOT NULL,
+// 	"fullName"	TEXT NOT NULL,
 // 	"sex"	TEXT NOT NULL,
-// 	"nric"	TEXT NOT NULL,
 // 	"race"	TEXT NOT NULL,
+// 	"email"	TEXT,
+// 	"nric"	TEXT NOT NULL,
 // 	"entityName"	TEXT,
 // 	"UEN"	TEXT,
 // 	PRIMARY KEY("id" AUTOINCREMENT)

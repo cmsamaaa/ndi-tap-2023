@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title #{firstName} #{lastName} | IdentifyMe
+        title #{fullName} | IdentifyMe
         include includes/head
         link(rel='stylesheet', href='/css/profile.css')
     body
@@ -20,8 +20,8 @@ html
                                 div.col-5.fw-bold Identification Code
                                 div.col-7 #{code}
                             div.row
-                                div.col-5.fw-bold Name
-                                div.col-7 #{firstName} #{lastName}
+                                div.col-5.fw-bold Full Name
+                                div.col-7 #{fullName}
                             div.row
                                 div.col-5.fw-bold Sex
                                 div.col-7 #{sex}
@@ -33,6 +33,6 @@ html
                                     br
                     div.row
                         if entityName
-                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a representative of <b>#{entityName}</b>, registered with <span class="label">IdentifyMe</span>.
+                            div.col.text-center.fst-italic <b>#{title} #{fullName}</b> is a representative of <b>#{entityName}</b>, registered with <span class="label">IdentifyMe</span>.
                         else
-                            div.col.text-center.fst-italic <b>#{title} #{firstName} #{lastName}</b> is a registered individual with <span class="label">IdentifyMe</span>.
+                            div.col.text-center.fst-italic <b>#{title} #{fullName}</b> is a registered individual with <span class="label">IdentifyMe</span>.

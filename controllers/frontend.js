@@ -21,8 +21,7 @@ exports.viewProfile = async (req, res, next) => {
             const result = JSON.parse(body);
             const profile = {
                 code: result.code,
-                firstName: result.firstName,
-                lastName: result.lastName,
+                fullName: result.fullName,
                 sex: result.sex,
                 race: result.race,
                 entityName: result.entityName,
