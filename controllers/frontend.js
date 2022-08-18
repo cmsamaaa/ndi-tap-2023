@@ -43,3 +43,7 @@ exports.verifyProfile = async (req, res, next) => {
         });
     }
 };
+
+exports.register = async (req, res, next) => {
+    res.status(HTTP_STATUS.OK).render('register');
+};
