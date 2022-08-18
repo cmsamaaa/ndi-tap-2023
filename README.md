@@ -71,7 +71,7 @@ identification. These identification profiles will be used for professional cont
 that is safe for the public to see.
 
 Every identification profile will have a photo of the individual, an identification code, their full name, the
-organisation that they are representing (if applicable).
+entity that they are representing (if applicable).
 
 The customer must be allowed to enter the identification code on the platform. The platform should display the exact
 same identification profile.
