@@ -23,7 +23,7 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Setup Guide (Local)](#setup-guide-local)
     1. [Node.js](#1-nodejs)
     2. [Docker (Optional)](#2-docker-optional)
-    3. [Process Environment Variables (Optional)](#3-process-environment-variables-env-optional)
+    3. [Process Environment Variables](#3-process-environment-variables-env)
 - [npm Commands](#npm-commands)
     - [npm ci](#npm-ci)
     - [npm start](#npm-start)
@@ -174,7 +174,7 @@ it [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 You may choose to containerise this application and run it on Docker. To do so, download and install
 Docker [here](https://docs.docker.com/desktop/install/windows-install/).
 
-### 3. Process Environment Variables `.env` (Optional)
+### 3. Process Environment Variables `.env`
 
 Before running the app and unit test, you may configure the following optional process environment variable(s).
 
