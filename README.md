@@ -14,6 +14,7 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 
 - [Problem Statement](#problem-statement)
 - [Proposed Solution](#proposed-solution)
+- [Future Improvements](#future-improvements)
 - [Architecture](#architecture)
 - [Wireframe](#wireframe)
 - [Start the Application](#start-the-application)
@@ -57,27 +58,41 @@ deterrence and may not be enough to curb the sophisticated scams that scammers h
 
 ## Proposed Solution
 
-As such, I would like to propose **IdentifyMe**, a platform that allows individuals or business representatives to
+As such, I would like to propose **IdentifyMe**, a platform that allows _individuals_ or _business representatives_ to
 guarantee their identity during their exchange with the customers.
 
-Individuals may apply for an identification profile by applying with MyInfo. Registered businesses will be able to apply
+_Individuals_ may apply for an identification profile by applying with MyInfo. Registered businesses will be able to
+apply
 for such identification profiles on behalf of their employees by applying with MyInfo Business. These applications will
 be instantly approved as their identities are guaranteed by MyInfo.
 
-Similar to an NRIC or driver license, these identification profile will be locally recognised as a form of
-identification. These identification profile will be used in professional context, and will only contain information
+Similar to an NRIC or driver license, these identification profiles will be locally recognised as a legal form of
+identification. These identification profiles will be used for professional contexts, and will only contain information
 that is safe for the public to see.
 
 Every identification profile will have a photo of the individual, an identification code, their full name, the
-organisation that they are representing (if applicable), and a QR code (future implementation).
+organisation that they are representing (if applicable).
 
-The customer must be allowed enter the identification code or scan the QR code (future implementation) on the platform.
-The platform should display the exact same identification profile, and record this interaction under the customer's
-contact history log to facilitate swift tracking of the individual or business representative when necessary.
+The customer must be allowed to enter the identification code on the platform. The platform should display the exact
+same identification profile.
 
 My solution aims to provide Singaporeans with a method to verify the identity of any individual or business
-representative in local context. On the other hand, these individuals and business representatives can safely assure
+representative in local context. On the other hand, these _individuals_ or _business representatives_ can safely assure
 their customers with ease, allowing better conversations to happen.
+
+## Future Improvements
+
+Due to time constraints, the proposed solution is only a simple prototype. If time is not a constraint, I would suggest
+adding a dynamically generated QR code on the profile, where the customer can simply scan the QR code to be shown the
+same identification profile of the _individuals_ or _business representative_ on their own devices.
+
+Simultaneously, this interaction will be logged under the customer's "contact history" to facilitate swift tracking of
+the individual or business representative when necessary. The customer will immediately receive a notification that
+the interaction with the _individuals_ or _business representative_ has been logged. Thus, should there be no
+notification, there is a chance that they might have encountered a fake identification profile.
+
+Also, developing this solution as a native app for smartphones is recommended, as it will be harder for scammers to
+attempt to replicate the platform and create a "phishing site" to fake their identification profiles.
 
 ## Architecture
 
@@ -216,10 +231,14 @@ summarised list taken from [package.json](./package.json):
 
     "dependencies": {
         "body-parser": "^1.20.0",
+        "bootstrap": "^5.2.0",
         "cors": "^2.8.5",
         "express": "^4.18.1",
+        "jquery": "^3.6.0",
         "knex": "^2.2.0",
+        "morgan": "^1.10.0",
         "pug": "^3.0.2",
+        "request": "^2.88.2",
         "sqlite3": "^5.0.11"
     },
     "devDependencies": {
