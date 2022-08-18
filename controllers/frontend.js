@@ -1,5 +1,6 @@
 const request = require('request');
 const generate_person = require('../lib/generate_person');
+const api_endpoint = require('../lib/api_endpoint');
 const HTTP_STATUS = require("../constants/http_status");
 
 exports.viewIndex = async (req, res, next) => {
@@ -15,9 +16,9 @@ exports.viewProfile = async (req, res, next) => {
         return;
     }
 
-    const host = req.protocol + '://' + req.hostname + ':' + process.env.PORT;
-    const endpoint = '/api/getProfile/';
-    request(host + endpoint + req.query.code, (error, response, body) => {
+    // api endpoint uri
+    const uri = api_endpoint.parse(req, '/api/getProfile/');
+    request(uri + req.query.code, (error, response, body) => {
         if (body) {
             const result = JSON.parse(body);
             const profile = {
@@ -56,27 +57,27 @@ exports.register = async (req, res, next) => {
 };
 
 exports.myinfo = async (req, res, next) => {
-    // api endpoint
-    const host = req.protocol + '://' + req.hostname + ':' + process.env.PORT;
-    const endpoint = '/api/createProfile/';
+    // api endpoint uri
+    const uri = api_endpoint.parse(req, '/api/createProfile/');
 
+    // generate fake person info
     const profile = generate_person.random_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfo', {
-        api_endpoint: host + endpoint,
+        api_uri: uri,
         profile: profile
     });
 };
 
 exports.myinfoBusiness = async (req, res, next) => {
-    // api endpoint
-    const host = req.protocol + '://' + req.hostname + ':' + process.env.PORT;
-    const endpoint = '/api/createProfile/';
+    // api endpoint uri
+    const uri = api_endpoint.parse(req, '/api/createProfile/');
 
+    // generate fake person + entity info
     const profile = generate_person.random_entity_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfoBusiness', {
-        api_endpoint: host + endpoint,
+        api_uri: uri,
         profile: profile
     });
 };
