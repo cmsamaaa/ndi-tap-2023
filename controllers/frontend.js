@@ -11,7 +11,7 @@ exports.viewIndex = async (req, res, next) => {
 exports.viewProfile = async (req, res, next) => {
     // if query code is empty
     if (!req.query.code) {
-        res.status(HTTP_STATUS.NOT_FOUND).redirect('/verifyProfile?result=false');
+        res.status(HTTP_STATUS.NOT_FOUND).redirect('/verify?result=false');
         return;
     }
 
@@ -30,7 +30,7 @@ exports.viewProfile = async (req, res, next) => {
             };
             res.status(HTTP_STATUS.OK).render('profileCard', profile);
         } else
-            res.status(HTTP_STATUS.NOT_FOUND).redirect('/verifyProfile?result=false&search=' + req.query.code);
+            res.status(HTTP_STATUS.NOT_FOUND).redirect('/verify?result=false&search=' + req.query.code);
     });
 };
 
