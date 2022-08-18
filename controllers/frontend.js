@@ -34,7 +34,7 @@ exports.verifyProfile = async (req, res, next) => {
     else {
         res.status(HTTP_STATUS.NOT_FOUND).render('verifyProfile', {
             search: req.query.search,
-            message: 'The identification code is invalid.'
+            message: 'This identification code is invalid.'
         });
     }
 };
