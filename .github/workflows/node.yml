@@ -1,35 +1,40 @@
 name: Node.js CI
 
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [ main ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Use Node.js '16.x'
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '16.x'
-                  cache: 'npm'
-            - name: npm install, build, and test
-              env:
-                  URI_IGNORE_PORT: 0
-                  ENV: 'test'
-              run: |
-                  npm ci
-                  npm run build --if-present
-                  npm test --if-present
-            # - name: Build, Push and Deploy to Heroku # set whatever name you want to this step
-            #   id: heroku
-            #   uses: gonuit/heroku-docker-deploy@v1.3.3
-            #   with:
-            #       email: ${{ secrets.HEROKU_EMAIL }}
-            #       heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-            #       heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-            #       dockerfile_directory: ./
-            #       dockerfile_name: Dockerfile
-            #       process_type: 'web'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js '16.x'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: npm install, build, and test
+        env:
+          URI_IGNORE_PORT: 0
+          ENV: 'test'
+        run: |
+          npm ci
+          npm run build --if-present
+          npm test --if-present
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage
+#      - name: Build, Push and Deploy to Heroku # set whatever name you want to this step
+#        id: heroku
+#        uses: gonuit/heroku-docker-deploy@v1.3.3
+#        with:
+#          email: ${{ secrets.HEROKU_EMAIL }}
+#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+#          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+#          dockerfile_directory: ./
+#          dockerfile_name: Dockerfile
+#          process_type: 'web'
