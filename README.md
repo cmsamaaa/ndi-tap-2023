@@ -304,6 +304,7 @@ summarised list taken from [package.json](./package.json):
         "express": "^4.18.1",
         "jquery": "^3.6.0",
         "knex": "^2.2.0",
+        "lodash": "^4.17.21",
         "morgan": "^1.10.0",
         "pug": "^3.0.2",
         "random-name": "^0.1.2",
