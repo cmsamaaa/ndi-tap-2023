@@ -7,8 +7,8 @@ const sqlite3 = require('sqlite3').verbose();
 const profiles = require("../models/profiles");
 const generate_person = require('../lib/generate_person');
 
-const dbFile = './models/identifyme_test.sqlite3'
-const sqlite3_db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE, (err) => {
+const dbFile = './models/identifyme_test.sqlite3';
+const sqlite3_db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
     if (err) return console.log(err.message);
 });
 
