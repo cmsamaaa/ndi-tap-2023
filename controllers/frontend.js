@@ -30,7 +30,9 @@ exports.viewProfile = async (req, res, next) => {
                 entityName: result.entityName,
                 title: result.sex === "Male" ? "Mr." : "Ms."
             };
-            res.status(HTTP_STATUS.OK).render('profileCard', profile);
+            res.status(HTTP_STATUS.OK).render('profileCard', {
+                profile: profile
+            });
         } else
             res.status(HTTP_STATUS.NOT_FOUND).redirect('/verify?result=false&search=' + req.query.code);
     });
@@ -78,6 +80,7 @@ exports.myinfo = async (req, res, next) => {
     const profile = generate_person.random_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfo', {
+        path: '/register',
         action_uri: uri,
         profile: profile
     });
@@ -91,6 +94,7 @@ exports.myinfoBusiness = async (req, res, next) => {
     const profile = generate_person.random_entity_individual();
 
     res.status(HTTP_STATUS.OK).render('myinfoBusiness', {
+        path: '/register',
         action_uri: uri,
         profile: profile
     });

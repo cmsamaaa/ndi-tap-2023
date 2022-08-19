@@ -1,7 +1,7 @@
 doctype html
 html
     head
-        title #{fullName} | IdentifyMe
+        title #{profile.fullName} | IdentifyMe
         include includes/head
         link(rel='stylesheet', href='/css/profile.css')
     body
@@ -14,28 +14,28 @@ html
                     div.row
                         div.col-4
                             div.row.mx-auto.justify-content-center
-                                if sex === 'Male'
+                                if profile.sex === 'Male'
                                     img.profile-image(src='/img/man-silhouette.jpg')
                                 else
                                     img.profile-image(src='/img/female-silhouette.svg')
                         div.col-8.my-auto
                             div.row
                                 div.col-5.fw-bold Identification Code
-                                div.col-7 #{code}
+                                div.col-7 #{profile.code}
                             div.row
                                 div.col-5.fw-bold Full Name
-                                div.col-7 #{fullName}
+                                div.col-7 #{profile.fullName}
                             div.row
                                 div.col-5.fw-bold Sex
-                                div.col-7 #{sex}
+                                div.col-7 #{profile.sex}
                             div.row
                                 div.col-5.fw-bold Race
-                                div.col-7 #{race}
+                                div.col-7 #{profile.race}
                             div.row
                                 div.col
                                     br
                     div.row
-                        if entityName
-                            div.col.text-center.fst-italic <b>#{title} #{fullName}</b> is a representative of <b>#{entityName}</b>, registered with <span class="label">IdentifyMe</span>.
+                        if profile.entityName
+                            div.col.text-center.fst-italic <b>#{profile.title} #{profile.fullName}</b> is a representative of <b>#{profile.entityName}</b>, registered with <span class="label">IdentifyMe</span>.
                         else
-                            div.col.text-center.fst-italic <b>#{title} #{fullName}</b> is a registered individual with <span class="label">IdentifyMe</span>.
+                            div.col.text-center.fst-italic <b>#{profile.title} #{profile.fullName}</b> is a registered individual with <span class="label">IdentifyMe</span>.
