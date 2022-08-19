@@ -16,7 +16,7 @@ html
                     form(action='/viewProfile', method='GET')
                         label.form-label(for='select_nric') NRIC
                         div
-                            select#select_nric.form-select.mb-5(name='code')
+                            select#select_nric.form-select.mb-3(name='code')
                                 each val in results
                                     option(value=val.code) #{val.nric}
-                            input.btn.btn-custom(type='submit', value="Login with Singpass")
+                            input.btn.btn-custom.float-end(type='submit', value="Login with Singpass")
