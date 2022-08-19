@@ -10,7 +10,11 @@ const frontendRoutes = require('./routes/frontend');
 const backendRoutes = require('./routes/backend');
 const apiRoutes = require('./routes/api');
 
-const PORT = process.env.PORT || 3000;
+let PORT = 3000;
+if (process.env.ENV !== "test")
+    PORT = process.env.PORT || 3000;
+else
+    PORT = process.env.PORT || 3001;
 
 // init app
 const app = express();
@@ -29,7 +33,10 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')))
 // middleware
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-form-urlencoded
-app.use(logger('dev'));
+
+// middleware logger
+if (process.env.ENV !== "test")
+    app.use(logger('dev'));
 
 // allow the server to accept requests from external clients for api endpoints
 const corsOptions = {
