@@ -4,7 +4,7 @@
 
 For this technical assessment, I will be developing a fullstack project. This project is a prototype that solves problem
 statement defined below, written in Node.js with JavaScript, using Pug template engine, Express.js framework for
-backend, and basic data storage with SQLite.
+backend, and basic data manipulation with SQLite.
 
 This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.herokuapp.com/).
 
@@ -16,6 +16,8 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Proposed Solution](#proposed-solution)
 - [Future Improvements](#future-improvements)
 - [Architecture](#architecture)
+    - [CI/CD Pipeline](#cicd)
+    - [Unit Test](#unit-test)
 - [Wireframe](#wireframe)
 - [Start the Application](#start-the-application)
     1. [Node](#1-node)
@@ -30,8 +32,6 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
     - [npm run dev](#npm-run-dev)
     - [npm run test](#npm-run-test)
 - [Dependencies](#dependencies)
-- [Unit Test](#unit-test)
-- [CI/CD Pipeline](#cicd)
 
 ## Problem Statement
 
@@ -82,25 +82,90 @@ their customers with ease, allowing better conversations to happen.
 
 ## Future Improvements
 
-Due to time constraints, the proposed solution is only a simple prototype. If time is not a constraint, I would suggest
-adding a dynamically generated QR code on the profile, where the customer can simply scan the QR code to be shown the
-same identification profile of the _individuals_ or _business representative_ on their own devices.
+Due to time constraints, the proposed solution is only a bare-bone prototype. If time is not a constraint, I would 
+suggest adding a dynamically generated QR code on the profile, where the customer can simply scan the QR code to be 
+shown the same identification profile of the _individuals_ or _business representative_ on their own devices.
 
 Simultaneously, this interaction will be logged under the customer's "contact history" to facilitate swift tracking of
 the individual or business representative when necessary. The customer will immediately receive a notification that
-the interaction with the _individuals_ or _business representative_ has been logged. Thus, should there be no
-notification, there is a chance that they might have encountered a fake identification profile.
+the interaction with the _individuals_ or _business representative_ has been logged. Thus, if no notification was
+received after entering the code or scanning the QR, there is a chance that they might have encountered a fake 
+identification profile.
 
-Also, developing this solution as a native app for smartphones is recommended, as it will be harder for scammers to
-attempt to replicate the platform and create a "phishing site" to fake their identification profiles.
+The end goal for this would be to develop this solution as a native app for smartphones is recommended, as it will be 
+trickier for scammers to attempt to replicate the platform in order to create a "phishing site" to fake their 
+identification profiles.
 
 ## Architecture
 
-To be added...
+![Architecture](./documentations/Architecture%20Diagram.jpg)
+
+### CI/CD
+
+This project is supported by a CI/CD pipeline workflow. The entire process starting from the moment the code is pushed
+onto this repository, until the deployment on Heroku are fully automated.
+
+The CI/CD process begins with the workflow process on GitHub Actions. Click [here](./.github/workflows/node.yml) to view
+the YAML file.
+
+Upon pushing into the "main" branch, the CI workflow will be automatically triggered, beginning with checking out the
+repository so that the workflow can access it. The CI attempt to install all necessary dependencies and run the unit
+testings (test). When the build and tests are completed, it will export the code coverage report as an artifact, which
+can be downloaded from the "Summary" of each completed workflow process.
+
+When the CI workflow passes, the codes will be pushed to Heroku automatically. Heroku will take instructions
+from [heroku.yml](./heroku.yml), build the docker image, and run the containerised application on a Heroku Dyno.
+
+And that encompasses the entire workflow and pipeline of this project!
+
+### Unit Test
+
+Unit tests have been written to test each of the API endpoints, ensuring that the HTTP status codes are returned
+correctly, all responses returns as intended and in proper format, and that exceptions are handled properly. In order to
+achieve this, I picked a combination of [Mocha.js](https://mochajs.org/) and [Chai.js](https://www.chaijs.com/)
+framework, which are commonly used together for writing Node.js unit testing. On top of these, it was also necessary to
+install [Chai HTTP](https://www.chaijs.com/plugins/chai-http/) to support HTTP integration testing with Chai assertions.
+
+To ensure that the unit tests are covering as many segments of the codes as possible, I have used a code coverage
+tester, [Istanbul / nyc](https://istanbul.js.org/), as a means to ensure my codebase are well tested by my unit tests.
+
+During the testing, the application automatically swaps to the test database, such that the production database will be
+left untouched.
+
+In order to accurately test the endpoints and response results, seed data will be inserted at the start of the test and
+removed at the end of testing.
 
 ## Wireframe
 
-To be added...
+**Home Page**
+![Home](./documentations/Wireframe/Home.JPG)
+
+**Verify Page**
+![Verify](./documentations/Wireframe/Verify.JPG)
+
+**Verify Page (Not Found)**
+![Verify (Not Found)](./documentations/Wireframe/Verify_Error.JPG)
+
+**Profile Card**
+![Profile Card](./documentations/Wireframe/Profile_Card.JPG)
+
+**Login Page**
+![Login Page](./documentations/Wireframe/Login.JPG)
+
+**Register Page**
+![Register Page](./documentations/Wireframe/Register.JPG)
+
+**Register Page (Error)**
+![Register Page](./documentations/Wireframe/Register_Error.JPG)
+
+**MyInfo Registration**
+![MyInfo Registration](./documentations/Wireframe/MyInfo.JPG)
+
+**MyInfo Business Registration**
+![MyInfo Registration](./documentations/Wireframe/MyInfo_Business.JPG)
+
+**Error Page**
+![Error Page](./documentations/Wireframe/Error_404.JPG)
 
 ## Start the Application
 
@@ -142,7 +207,7 @@ Execute the two following commands, one after another:
 docker build -t ndi-tap-2023 .
 
 # docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
-docker run -d -p 3000:3000 ndi-tap-2023
+docker run --env URI_IGNORE_PORT=0 -d -p 3000:3000 ndi-tap-2023
 ```
 
 #### For Linux/MacOS
@@ -152,7 +217,7 @@ docker run -d -p 3000:3000 ndi-tap-2023
 sudo docker build -t ndi-tap-2023 .
 
 # sudo docker run -d -p <Browser_expose_port>:<application port> <image_id/name>
-sudo docker run -d -p 3000:3000 ndi-tap-2023
+sudo docker run --env URI_IGNORE_PORT=0 -d -p 3000:3000 ndi-tap-2023
 ```
 
 ## Setup Guide (Local)
@@ -187,7 +252,6 @@ PORT=3000
 |:------------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `URI_IGNORE_PORT` | `Number` | **Required**. Set `1` if the port is not required. By default, you should set to `0` when running locally or when the port is necessary. Live deployment may require this value to be set to `1`. |
 | `PORT`            | `Number` | **Optional**. Specify the port that your app will run on. By default, it is set to 3000.                                                                                                          |
-
 
 ## npm Commands
 
@@ -240,6 +304,8 @@ summarised list taken from [package.json](./package.json):
         "knex": "^2.2.0",
         "morgan": "^1.10.0",
         "pug": "^3.0.2",
+        "random-name": "^0.1.2",
+        "randomstring": "^1.2.2",
         "request": "^2.88.2",
         "sqlite3": "^5.0.11"
     },
@@ -251,37 +317,3 @@ summarised list taken from [package.json](./package.json):
         "nyc": "^15.1.0"
     }
 
-## Unit Test
-
-Unit tests have been written to test each of the API endpoints, ensuring that the HTTP status codes are returned
-correctly, all responses returns as intended and in proper format, and that exceptions are handled properly. In order to
-achieve this, I picked a combination of [Mocha.js](https://mochajs.org/) and [Chai.js](https://www.chaijs.com/)
-framework, which are commonly used together for writing Node.js unit testing. On top of these, it was also necessary to
-install [Chai HTTP](https://www.chaijs.com/plugins/chai-http/) to support HTTP integration testing with Chai assertions.
-
-To ensure that the unit tests are covering as many segments of the codes as possible, I have used a code coverage
-tester, [Istanbul / nyc](https://istanbul.js.org/), as a means to ensure my codebase are well tested by my unit tests.
-
-During the testing, the application automatically swaps to the test database, such that the production database will be
-left untouched.
-
-In order to accurately test the endpoints and response results, seed data will be inserted at the start of the test and
-removed at the end of testing.
-
-## CI/CD
-
-This project is supported by a CI/CD pipeline workflow. The entire process starting from the moment the code is pushed
-onto this repository, until the deployment on Heroku are fully automated.
-
-The CI/CD process begins with the workflow process on GitHub Actions. Click [here](./.github/workflows/node.yml) to view
-the YAML file.
-
-Upon pushing into the "main" branch, the CI workflow will be automatically triggered, beginning with checking out the
-repository so that the workflow can access it. The CI attempt to install all necessary dependencies and run the unit
-testings (test). When the build and tests are completed, it will export both the compiled app and code coverage report
-as artifacts produced by the workflow, which can be downloaded from the "Summary" of each completed workflow process.
-
-When the CI workflow passes, the codes will be pushed to Heroku automatically. Heroku will refer
-to [heroku.yml](./heroku.yml), build the docker image, and start the containerised application on the Heroku server.
-
-And that encompasses the entire workflow and pipeline of this project!
