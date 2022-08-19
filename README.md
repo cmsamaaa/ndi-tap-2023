@@ -169,9 +169,9 @@ removed at the end of testing.
 
 ## Start the Application
 
-Choose only of the two following methods below to start the app. Once the app is running, you should be able to access
-it via `http://localhost:3000`. If you have issues with starting or running the app, please refer
-to the [setup guide](#setup-guide-local) below.
+Choose only one of the two following methods below to start the app. Once the app is running, you should be able to 
+access it via `http://localhost:3000`. If you have issues with starting or running the app, please refer to the 
+[setup guide](#setup-guide-local) below.
 
 ### 1. Node
 
@@ -245,12 +245,14 @@ Before running the app and unit test, you may configure the following optional p
 
 ```
 URI_IGNORE_PORT=0
+ENV=test
 PORT=3000
 ```
 
 | Parameters        | Type     | Description                                                                                                                                                                                       |
 |:------------------|:---------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `URI_IGNORE_PORT` | `Number` | **Required**. Set `1` if the port is not required. By default, you should set to `0` when running locally or when the port is necessary. Live deployment may require this value to be set to `1`. |
+| `ENV`             | `String` | **Optional**. Set value to `test` for unit testing only.                                                                                                                                          |
 | `PORT`            | `Number` | **Optional**. Specify the port that your app will run on. By default, it is set to 3000.                                                                                                          |
 
 ## npm Commands

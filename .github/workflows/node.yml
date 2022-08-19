@@ -17,6 +17,7 @@ jobs:
                   cache: 'npm'
             - name: npm install, build, and test
               env:
+                  URI_IGNORE_PORT: 0
                   ENV: 'test'
               run: |
                   npm ci
