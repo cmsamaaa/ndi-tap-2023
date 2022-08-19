@@ -65,7 +65,6 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     const results = await profiles.listAllProfilesForLogin();
-    console.log(results);
     res.status(HTTP_STATUS.OK).render('login', {
         path: '/login',
         results: results
