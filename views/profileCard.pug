@@ -14,7 +14,10 @@ html
                     div.row
                         div.col-4
                             div.row.mx-auto.justify-content-center
-                                img.profile-image(src='/img/man-silhoutte.jpg')
+                                if sex === 'Male'
+                                    img.profile-image(src='/img/man-silhouette.jpg')
+                                else
+                                    img.profile-image(src='/img/female-silhouette.svg')
                         div.col-8.my-auto
                             div.row
                                 div.col-5.fw-bold Identification Code

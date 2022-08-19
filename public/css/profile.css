@@ -4,6 +4,13 @@
 
 .profile-card {
     width: 42rem !important;
+    pointer-events: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
 .profile-banner {
@@ -11,6 +18,7 @@
     overflow: hidden;
     height: 100px;
     margin-top: 16px;
+    pointer-events: none;
 }
 
 .profile-banner img {
@@ -29,6 +37,7 @@
     width: 150px !important;
     height: 150px !important;
     object-fit: contain;
+    pointer-events: none;
 }
 
 .profile-note {
