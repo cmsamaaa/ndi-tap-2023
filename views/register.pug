@@ -5,7 +5,9 @@ html
         include includes/head
     body
         include includes/navbar
-        div.container.text-start.mt-5
+        div.container.text-start.mt-5.mb-5
+            div.row
+                h3.mb-4 Register with <span class="label">Singpass</span>
             if message
                 div.alert.alert-danger.d-flex.align-items-center(role='alert')
                     div <strong>Error!</strong> #{message}

@@ -9,8 +9,8 @@ html
             form(action=action_uri, method='POST')
                 div.row
                     h3.mb-4 Register with <span class="label">MyInfo Business</span>
-                div.row.mb-5
-                    div.col-6
+                div.row.mb-3
+                    div.col-md-6.col-sm-12.mb-3
                         div.card.h-100
                             h4.card-title.ms-4.mt-4.label-light Personal Information
                             hr.d-flex.mx-auto(style='width: 95%')
@@ -30,7 +30,7 @@ html
                                 div
                                     label.form-label(for='tb_email') Email
                                     input#tb_email.form-control.disabled(type='email', name='email', value=profile.email, readonly=true)
-                    div.col-6
+                    div.col-md-6.col-sm-12.mb-3
                         div.card.h-100
                             h4.card-title.ms-4.mt-4.label-light Corporate Information
                             hr.d-flex.mx-auto(style='width: 95%')
@@ -41,7 +41,6 @@ html
                                 div
                                     label.form-label(for='tb_entityName') Entity Name
                                     input#tb_entityName.form-control.mb-3.disabled(type='text', name='entityName', value=profile.entityName, readonly=true)
-
-                div.d-flex.justify-content-center
+                div.d-flex.justify-content-center.mb-4
                     input#tb_code.form-control(type='hidden', name='code', value=profile.code)
                     input(type='submit', class='btn btn-custom', value='Submit Application')
