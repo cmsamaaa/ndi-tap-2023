@@ -16,5 +16,5 @@ html
                     form(action='/viewProfile', method='GET')
                         label.form-label(for='tb_code') Identification Code
                         div.input-group
-                            input#tb_code(type='text', name='code', class='form-control', placeholder='SG12345678Z', value=search)
-                            input(type='submit', class='btn btn-custom', value="Verify")
+                            input#tb_code.form-control(type='text', name='code', placeholder='SG12345678Z', value=search)
+                            input.btn.btn-custom(type='submit', value="Verify")
