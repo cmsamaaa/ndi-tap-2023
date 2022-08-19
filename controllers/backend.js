@@ -5,7 +5,6 @@ const HTTP_STATUS = require("../constants/http_status");
 exports.register = async (req, res, next) => {
     // api endpoint uri
     const uri = parse_uri.parse(req, '/api/createProfile/');
-    console.log(req.body);
     request.post({
         url: uri,
         form: req.body
