@@ -1,0 +1,22 @@
+doctype html
+html
+    head
+        title Login | IdentifyMe
+        include includes/head
+    body
+        include includes/navbar
+        div.container.text-start.d-flex.justify-content-center.mt-5
+            div.verify-form
+                div.row
+                    h3.mb-4 Login with <span class="label">Singpass</span>
+                if message
+                    div.alert.alert-danger.d-flex.align-items-center(role='alert')
+                        div <strong>Beware!</strong> #{message}
+                div.row
+                    form(action='/viewProfile', method='GET')
+                        label.form-label(for='select_nric') NRIC
+                        div
+                            select#select_nric.form-select.mb-5(name='code')
+                                each val in results
+                                    option(value=val.code) #{val.nric}
+                            input.btn.btn-custom(type='submit', value="Login with Singpass")

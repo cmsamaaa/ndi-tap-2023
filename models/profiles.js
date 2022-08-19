@@ -21,6 +21,10 @@ function getProfile(code) {
     return db('profiles').select('*').where('code',  code);
 }
 
+function listAllProfilesForLogin() {
+    return db('profiles').select('code').select('nric');
+}
+
 function updateProfile(code, profile) {
     return db('profiles').where('code', code).update(profile);
 }
@@ -28,5 +32,6 @@ function updateProfile(code, profile) {
 module.exports = {
     createProfile,
     getProfile,
+    listAllProfilesForLogin,
     updateProfile
 }

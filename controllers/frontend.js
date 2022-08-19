@@ -2,6 +2,7 @@ const request = require('request');
 const generate_person = require('../lib/generate_person');
 const parse_uri = require('../lib/parse_uri');
 const HTTP_STATUS = require("../constants/http_status");
+const profiles = require("../models/profiles");
 
 exports.viewIndex = async (req, res, next) => {
     res.status(HTTP_STATUS.OK).render('index', {
@@ -59,6 +60,15 @@ exports.register = async (req, res, next) => {
             message: 'An error occurred while trying to create your identification profile.'
         });
 };
+
+exports.login = async (req, res, next) => {
+    const results = await profiles.listAllProfilesForLogin();
+    console.log(results);
+    res.status(HTTP_STATUS.OK).render('login', {
+        path: '/login',
+        results: results
+    });
+}
 
 exports.myinfo = async (req, res, next) => {
     // api endpoint uri
