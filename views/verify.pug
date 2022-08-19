@@ -13,7 +13,7 @@ html
                     div.alert.alert-danger.d-flex.align-items-center(role='alert')
                         div <strong>Beware!</strong> #{message}
                 div.row
-                    form(action='/viewProfile', method='GET')
+                    form(action='/profileCard', method='GET')
                         label.form-label(for='tb_code') Identification Code
                         div.input-group
                             input#tb_code.form-control(type='text', name='code', placeholder='SG12345678Z', value=search)

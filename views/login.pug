@@ -13,7 +13,7 @@ html
                     div.alert.alert-danger.d-flex.align-items-center(role='alert')
                         div <strong>Beware!</strong> #{message}
                 div.row
-                    form(action='/viewProfile', method='GET')
+                    form(action='/profileCard', method='GET')
                         label.form-label(for='select_nric') NRIC
                         div
                             select#select_nric.form-select.mb-3(name='code')

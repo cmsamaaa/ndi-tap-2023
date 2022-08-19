@@ -11,7 +11,7 @@ exports.register = async (req, res, next) => {
         form: req.body
     }, (err, response, body) => {
         if (response.statusCode === 201)
-            res.redirect(parse_uri.parse(req, '/viewProfile?code=' + req.body.code));
+            res.redirect(parse_uri.parse(req, '/profileCard?code=' + req.body.code));
         else
             res.redirect(parse_uri.parse(req, '/register?result=false'));
     });

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', frontendController.viewIndex);
 router.get('/index', frontendController.viewIndex);
-router.get('/viewProfile', frontendController.viewProfile);
+router.get('/profileCard', frontendController.profileCard);
 router.get('/verify', frontendController.verify);
 router.get('/register', frontendController.register);
 router.get('/login', frontendController.login);

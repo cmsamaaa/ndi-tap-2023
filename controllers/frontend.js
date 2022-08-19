@@ -10,7 +10,7 @@ exports.viewIndex = async (req, res, next) => {
     });
 };
 
-exports.viewProfile = async (req, res, next) => {
+exports.profileCard = async (req, res, next) => {
     // if query code is empty
     if (!req.query.code) {
         res.status(HTTP_STATUS.NOT_FOUND).redirect('/verify?result=false');
