@@ -18,6 +18,7 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Architecture](#architecture)
     - [CI/CD (GitHub Actions)](#cicd-github-actions)
     - [Unit Test](#unit-test)
+    - [Code Coverage](#code-coverage)
     - [Containerise (Docker)](#containerise-docker)
 - [Wireframe](#wireframe)
 - [API Documentation](#api-documentation)
@@ -137,6 +138,13 @@ tester, [Istanbul / nyc](https://istanbul.js.org/), as a means to ensure my code
 
 During the testing, the application automatically swaps to a test database, such that the production database will be
 left untouched. Seed data is created at the start of the test and dropped at the end of testing.
+
+### Code Coverage
+
+As mentioned in the [Unit Test](#unit-test) section, a code coverage report is generated at the end of the CI 
+workflow, which can be downloaded from the workflow summary tab. A code coverage allowed me to write unit tests that
+covers all possible segments of the code, ensuring that all request and responses are submitted and returned as
+intended.
 
 ### Containerise (Docker)
 
