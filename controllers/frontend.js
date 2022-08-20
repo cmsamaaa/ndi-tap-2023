@@ -1,4 +1,5 @@
 const request = require('request');
+const _ = require('lodash');
 const generate_person = require('../lib/generate_person');
 const parse_uri = require('../lib/parse_uri');
 const HTTP_STATUS = require("../constants/http_status");
@@ -20,8 +21,8 @@ exports.profileCard = async (req, res, next) => {
     // api endpoint uri
     const uri = parse_uri.parse(req, '/api/getProfile/');
     request(uri + req.query.code, (error, response, body) => {
-        if (body) {
-            const result = JSON.parse(body);
+        const result = JSON.parse(body);
+        if (!_.isEmpty(result)) {
             const profile = {
                 code: result.code,
                 fullName: result.fullName,
