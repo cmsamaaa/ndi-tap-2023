@@ -18,3 +18,9 @@ exports.getProfile = async (req, res, next) => {
     else
         res.status(HTTP_STATUS.NOT_FOUND).json({});
 }
+
+exports.invalidEndpoint = (req, res, next) => {
+    res.status(HTTP_STATUS.NOT_FOUND).json({
+        message: 'API endpoint not found'
+    });
+};

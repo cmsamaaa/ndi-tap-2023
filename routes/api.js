@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/createProfile', apiController.createProfile);
 router.get('/getProfile/:code', apiController.getProfile);
+router.use(apiController.invalidEndpoint);
 
 module.exports = router;

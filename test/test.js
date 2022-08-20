@@ -85,6 +85,18 @@ describe('Check frontend paths', () => {
                 });
         });
     });
+
+    describe('/GET /api/null 404', () => {
+        it('it should return a 404 status code and error message', (done) => {
+            tester.request(app)
+                .get('/api/null')
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    res.body.message.should.be.eq('API endpoint not found');
+                    done();
+                });
+        });
+    });
     /* End of API endpoint unit tests */
 
     /* Start of fullstack app unit tests */
@@ -251,10 +263,10 @@ describe('Check frontend paths', () => {
         });
     });
 
-    describe('/GET /asdfghjkl 404', () => {
+    describe('/GET /null 404', () => {
         it('it should display the `Error` view when an invalid path is entered', (done) => {
             tester.request(app)
-                .get('/asdfghjkl')
+                .get('/null')
                 .end((err, res) => {
                     res.should.have.status(404);
                     done();
