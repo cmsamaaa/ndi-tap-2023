@@ -4,7 +4,7 @@
 
 For this technical assessment, I will be developing a fullstack project. This project is a prototype that solves problem
 statement defined below, written in Node.js with JavaScript, using Pug template engine, Express.js framework for
-backend, and basic data manipulation with SQLite.
+backend, and basic data manipulation with SQLite3.
 
 This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.herokuapp.com/).
 
@@ -16,9 +16,13 @@ This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.he
 - [Proposed Solution](#proposed-solution)
 - [Future Improvements](#future-improvements)
 - [Architecture](#architecture)
-    - [CI/CD Pipeline](#cicd)
+    - [CI/CD (GitHub Actions)](#cicd-github-actions)
     - [Unit Test](#unit-test)
+    - [Containerise (Docker)](#containerise-docker)
 - [Wireframe](#wireframe)
+- [API Documentation](#api-documentation)
+    1. [Create Profile](#1-create-profile)
+    2. [Get Profile](#2-get-profile)
 - [Start the Application](#start-the-application)
     1. [Node](#1-node)
     2. [Docker](#2-docker)
@@ -100,72 +104,177 @@ identification profiles.
 
 ![Architecture](./documentations/Architecture%20Diagram.jpg)
 
-### CI/CD
+### CI/CD (GitHub Actions)
 
 This project is supported by a CI/CD pipeline workflow. The entire process starting from the moment the code is pushed
-onto this repository, until the deployment on Heroku are fully automated.
+onto this repository, to the deployment on Heroku, including build and publish of Docker image, are fully automated.
 
-The CI/CD process begins with the workflow process on GitHub Actions. Click [here](./.github/workflows/node.yml) to view
-the YAML file.
+The CI/CD process begins with the workflow process on **GitHub Actions**. Click [here](./.github/workflows/node.yml) to 
+view the YAML file.
 
 Upon pushing into the "main" branch, the CI workflow will be automatically triggered, beginning with checking out the
-repository so that the workflow can access it. The CI attempt to install all necessary dependencies and run the unit
-testings (test). When the build and tests are completed, it will export the code coverage report as an artifact, which
-can be downloaded from the "Summary" of each completed workflow process.
+repository so that the workflow can access it. The CI attempt to install all necessary dependencies and run the [unit
+testings (test)](#unit-test). When the tests are completed, it will export the code coverage report as an 
+artifact, which can be downloaded from the "Summary" of each completed workflow process.
 
 When the CI workflow passes, the codes will be pushed to Heroku automatically. Heroku will take instructions
-from [heroku.yml](./heroku.yml), build the docker image, and run the containerised application on a Heroku Dyno.
+from [heroku.yml](./heroku.yml), build and publish the docker image, and run the containerised application on a Heroku 
+Dyno.
 
-And that encompasses the entire workflow and pipeline of this project!
+And that encompasses the entire continuous integration and deployment workflow of this app!
 
 ### Unit Test
 
-Unit tests have been written to test each of the API endpoints, ensuring that the HTTP status codes are returned
-correctly, all responses returns as intended and in proper format, and that exceptions are handled properly. In order to
-achieve this, I picked a combination of [Mocha.js](https://mochajs.org/) and [Chai.js](https://www.chaijs.com/)
-framework, which are commonly used together for writing Node.js unit testing. On top of these, it was also necessary to
-install [Chai HTTP](https://www.chaijs.com/plugins/chai-http/) to support HTTP integration testing with Chai assertions.
+Unit tests have been written to test each of the app's URIs and API endpoints, ensuring that correct HTTP status code 
+returns, all responses are returns intended and in proper format, and that exceptions are handled properly. 
+In order to achieve this, I picked a combination of [Mocha.js](https://mochajs.org/) and 
+[Chai.js](https://www.chaijs.com/) framework, which are commonly used together for writing Node.js unit testing. 
+On top of these, it was also necessary to install [Chai HTTP](https://www.chaijs.com/plugins/chai-http/) to support 
+HTTP integration testing with Chai assertions.
 
 To ensure that the unit tests are covering as many segments of the codes as possible, I have used a code coverage
 tester, [Istanbul / nyc](https://istanbul.js.org/), as a means to ensure my codebase are well tested by my unit tests.
 
-During the testing, the application automatically swaps to the test database, such that the production database will be
-left untouched.
+During the testing, the application automatically swaps to a test database, such that the production database will be
+left untouched. Seed data is created at the start of the test and dropped at the end of testing.
 
-In order to accurately test the endpoints and response results, seed data will be inserted at the start of the test and
-removed at the end of testing.
+### Containerise (Docker)
+
+To avoid the common issue of an application failing to run on other devices, it is important to containerise the
+application by isolating the application into an image using Docker. The app will then run on the container, which
+contains an operating system and the supporting software. The script that instructs Docker on how to set up the app
+is located [here](./Dockerfile).
 
 ## Wireframe
 
 **Home Page**
+
+URI: `/` or `/index`
 ![Home](./documentations/Wireframe/Home.JPG)
 
 **Verify Page**
+
+URI: `/verify`
 ![Verify](./documentations/Wireframe/Verify.JPG)
 
 **Verify Page (Not Found)**
+
+URI: `/verify?result&search`
 ![Verify (Not Found)](./documentations/Wireframe/Verify_Error.JPG)
 
 **Profile Card**
+
+URI: `/profileCard?code`
 ![Profile Card](./documentations/Wireframe/Profile_Card.JPG)
 
 **Login Page**
+
+URI: `/login`
 ![Login Page](./documentations/Wireframe/Login.JPG)
 
 **Register Page**
+
+URI: `/register`
 ![Register Page](./documentations/Wireframe/Register.JPG)
 
 **Register Page (Error)**
+
+URI: `/register?result`
 ![Register Page](./documentations/Wireframe/Register_Error.JPG)
 
 **MyInfo Registration**
+
+URI: `/myinfo` 
 ![MyInfo Registration](./documentations/Wireframe/MyInfo.JPG)
 
 **MyInfo Business Registration**
+
+URI: `/myinfoBusiness`
 ![MyInfo Registration](./documentations/Wireframe/MyInfo_Business.JPG)
 
 **Error Page**
+
+URI: Any invalid URL
 ![Error Page](./documentations/Wireframe/Error_404.JPG)
+
+## API Documentation
+This API returns responses in JSON format. Please ensure that `Content-Type: application/json` or 
+`application/x-www-form-urlencoded` is set in the request header and request body conforms to either.
+
+When a request is sent to an invalid endpoint, a `404` status code will be return with the following JSON response body:
+```json
+{
+    "message": "API endpoint not found"
+}
+```
+
+### 1. Create Profile
+```http request
+POST /api/createProfile
+```
+#### Request Body:
+```javascript
+{
+    "code"          : String,
+    "fullName"      : String,
+    "sex"           : String,
+    "race"          : String,
+    "email"         : String,
+    "nric"          : String,
+    "entityName"?   : String,
+    "UEN"?          : String
+}
+```
+| Parameter    | Type     | Description                                                                                   |
+|:-------------|:---------|:----------------------------------------------------------------------------------------------|
+| `code`       | `string` | **Required**. Identification code that represents a person profile. Field must be **UNIQUE**. |
+| `fullName`   | `string` | **Required**. Full name of the applicant.                                                     |
+| `sex`        | `string` | **Required**. Gender of the applicant.                                                        |
+| `race`       | `string` | **Required**. Race of the applicant.                                                          |
+| `email`      | `string` | **Required**. Email of the applicant.                                                         |
+| `nric`       | `string` | **Required**. NRIC of the applicant.                                                          |
+| `entityName` | `string` | **Optional**. Name of the entity that the applicant is representing.                          |
+| `UEN`        | `string` | **Optional**. UEN of the entity that the applicant is representing.                           |
+
+#### Success Response:
+```json
+{
+    "id": Number
+}
+```
+
+#### Error Response:
+```json
+{}
+```
+
+### 2. Get Profile
+```http request
+GET /api/getProfile/:code
+```
+| Parameter | Type     | Description                                                             |
+|:----------|:---------|:------------------------------------------------------------------------|
+| `:code`   | `String` | **Required**. Identification `code` that uniquely identifies a profile. |
+
+#### Success Response:
+```json
+{
+    "id": Number,
+    "code": String,
+    "fullName": String,
+    "sex": String,
+    "race": String,
+    "email": String,
+    "nric": String,
+    "entityName": String | null,
+    "UEN": String | null
+}
+```
+
+#### Error Response:
+```json
+{}
+```
 
 ## Start the Application
 
