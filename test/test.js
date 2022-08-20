@@ -52,6 +52,25 @@ describe('Check frontend paths', () => {
         });
     });
 
+    describe('/POST /api/createProfile 400 | POST duplicate code', () => {
+        it('it should return a 400 status code', (done) => {
+            tester.request(app)
+                .post('/api/createProfile')
+                .send({
+                    code: 'SG12345678Z',
+                    fullName: 'John Doe',
+                    sex: 'Male',
+                    race: 'Chinese',
+                    email: 'john_doe@gmail.com',
+                    nric: 'S9025123Z'
+                })
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    done();
+                });
+        });
+    });
+
     describe('/POST /api/createProfile 400 | POST empty request body', () => {
         it('it should return a 400 status code', (done) => {
             tester.request(app)
