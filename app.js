@@ -10,6 +10,8 @@ const frontendRoutes = require('./routes/frontend');
 const backendRoutes = require('./routes/backend');
 const apiRoutes = require('./routes/api');
 
+const profiles = require("./models/profiles");
+
 let PORT = 3000;
 if (process.env.ENV !== "test")
     PORT = process.env.PORT || 3000;
@@ -56,8 +58,17 @@ app.use('/api', apiRoutes);
 // error route
 app.use(errorController.get404);
 
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-});
+// seed database and start app server
+if (process.env.ENV !== "test")
+    profiles.createTableIfNotExist().then(res => {
+        console.log('Database table `profiles` seeded.')
+        app.listen(PORT, () => {
+            console.log(`App listening on port ${PORT}`);
+        });
+    });
+else
+    app.listen(PORT, () => {
+        console.log(`App listening on port ${PORT}`);
+    });
 
 module.exports = app;

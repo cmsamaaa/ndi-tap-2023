@@ -2,54 +2,25 @@ const tester = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
 const should = tester.should();
-const sqlite3 = require('sqlite3').verbose();
 
 const profiles = require("../models/profiles");
 const generate_person = require('../lib/generate_person');
-
-const dbFile = './models/identifyme_test.sqlite3';
-const sqlite3_db = new sqlite3.Database(dbFile, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
-    if (err) return console.log(err.message);
-});
 
 tester.use(chaiHttp);
 
 describe('Check frontend paths', () => {
     before((done) => {
-        // create database
-        let sql = `CREATE TABLE profiles (
-                        id INTEGER NOT NULL,
-                        code TEXT NOT NULL UNIQUE,
-                        fullName TEXT NOT NULL,
-                        sex TEXT NOT NULL,
-                        race TEXT NOT NULL,
-                        email TEXT NOT NULL UNIQUE,
-                        nric TEXT NOT NULL UNIQUE,
-                        entityName TEXT,
-                        UEN TEXT UNIQUE,
-                        PRIMARY KEY(id AUTOINCREMENT)
-                    )`;
-        sqlite3_db.run(sql);
-
-        // insert dummy profile
-        profiles.createProfile({
-            code: 'SG12345678Z',
-            fullName: 'John Doe',
-            sex: 'Male',
-            race: 'Chinese',
-            email: 'john_doe@gmail.com',
-            nric: 'S9025123Z'
-        }).then(res => {
+        // create table and insert seed data
+        profiles.createTableIfNotExist().then(res => {
             done();
         });
     });
 
     after((done) => {
         // drop tale
-        profiles.dropTable()
-            .then(res => {
-                done();
-            });
+        profiles.dropTable().then(res => {
+            done();
+        });
     });
 
     /* Start of API endpoint unit tests */
