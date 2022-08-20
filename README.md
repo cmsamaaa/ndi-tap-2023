@@ -149,52 +149,52 @@ is located [here](./Dockerfile).
 
 **Home Page**
 
-URI: `/` or `/index`
+URL: `/` or `/index`
 ![Home](./documentations/Wireframe/Home.JPG)
 
 **Verify Page**
 
-URI: `/verify`
+URL: `/verify`
 ![Verify](./documentations/Wireframe/Verify.JPG)
 
 **Verify Page (Not Found)**
 
-URI: `/verify?result&search`
+URL: `/verify?result&search`
 ![Verify (Not Found)](./documentations/Wireframe/Verify_Error.JPG)
 
 **Profile Card**
 
-URI: `/profileCard?code`
+URL: `/profileCard?code`
 ![Profile Card](./documentations/Wireframe/Profile_Card.JPG)
 
 **Login Page**
 
-URI: `/login`
+URL: `/login`
 ![Login Page](./documentations/Wireframe/Login.JPG)
 
 **Register Page**
 
-URI: `/register`
+URL: `/register`
 ![Register Page](./documentations/Wireframe/Register.JPG)
 
 **Register Page (Error)**
 
-URI: `/register?result`
+URL: `/register?result`
 ![Register Page](./documentations/Wireframe/Register_Error.JPG)
 
 **MyInfo Registration**
 
-URI: `/myinfo` 
+URL: `/myinfo` 
 ![MyInfo Registration](./documentations/Wireframe/MyInfo.JPG)
 
 **MyInfo Business Registration**
 
-URI: `/myinfoBusiness`
+URL: `/myinfoBusiness`
 ![MyInfo Registration](./documentations/Wireframe/MyInfo_Business.JPG)
 
 **Error Page**
 
-URI: Any invalid URL
+URL: Any invalid URLs
 ![Error Page](./documentations/Wireframe/Error_404.JPG)
 
 ## API Documentation
@@ -237,7 +237,7 @@ POST /api/createProfile
 | `UEN`        | `string` | **Optional**. UEN of the entity that the applicant is representing.                           |
 
 #### Success Response:
-```json
+```javascript
 {
     "id": Number
 }
@@ -257,7 +257,7 @@ GET /api/getProfile/:code
 | `:code`   | `String` | **Required**. Identification `code` that uniquely identifies a profile. |
 
 #### Success Response:
-```json
+```javascript
 {
     "id": Number,
     "code": String,
