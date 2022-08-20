@@ -401,7 +401,7 @@ the following:
 
 Refer to [package-lock.json](./package-lock.json) for all the nitty-gritty details, or refer to the following for a
 summarised list taken from [package.json](./package.json):
-
+```json5
     "dependencies": {
         "body-parser": "^1.20.0",
         "bootstrap": "^5.2.0",
@@ -424,4 +424,4 @@ summarised list taken from [package.json](./package.json):
         "nodemon": "^2.0.19",
         "nyc": "^15.1.0"
     }
-
+```
