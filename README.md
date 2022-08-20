@@ -366,7 +366,6 @@ PORT=3000
 
 ## npm Commands
 
-Now that your local files are set up and ready, we can start the server and run the server locally!
 Here, we have a list of CLI commands that may be useful to you. In the project directory, simply open a terminal to run
 the following:
 
@@ -374,28 +373,25 @@ the following:
 
 - This command will install all necessary dependencies based on the `package-lock.json`.
 - You only need to run this command <b>once</b> in the project directory.
-- You do not need to run this if you are using Docker.
 
 ### `npm start`
 
 - This command starts the node server located in the root of the repository.
 - Alternatively, you may run `node app.js`.
-- You do not need to run this if you are using Docker.
 - You can now access the app through `localhost:3000`.
 
 ### `npm run dev`
 
-- This command starts the node server in development mode.
-- It will monitor for any changes to the TypeScript files and compiles whenever necessary, afterwards it will restart
-  the node server.
-- Alternatively, you may run `nodemon -q app.js`
-- For more info, please refer to [Nodemon](https://github.com/remy/nodemon#nodemon)
+- This command starts the node server in development mode using nodemon.
+- It will monitor for any changes to the JavaScript files and restart the node server when changes are observed.
+- Alternatively, you may run `nodemon app.js`
+- For more info, please refer to [Nodemon](https://github.com/remy/nodemon#nodemon).
 
 ### `npm run test`
 
 - This command runs the unit tests and generates a code coverage report.
 - Code coverage report are generated in `./coverage`, in HTML format for ease of readability.
-- Alternatively, you may run `nyc --reporter=html --reporter=text mocha test/household.js --timeout 5000 --exit"`
+- Alternatively, you may run `nyc --reporter=html --reporter=text mocha test/test.js --exit"`
 - For more info, you may read up on them in their official documentations: [Istanbul / nyc](https://istanbul.js.org/)
   , [Mocha.js](https://mochajs.org/), [Chai.js](https://www.chaijs.com/).
 
