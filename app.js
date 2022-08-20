@@ -40,12 +40,6 @@ app.use(bodyParser.urlencoded({extended: false})); // parse application/x-www-fo
 if (process.env.ENV !== "test")
     app.use(logger('dev'));
 
-// allow the server to accept requests from external clients for api endpoints
-const corsOptions = {
-    methods: "GET, POST, PUT, DELETE, OPTIONS"
-}
-app.use(cors(corsOptions));
-
 // frontend route
 app.use('/', frontendRoutes);
 
@@ -53,7 +47,10 @@ app.use('/', frontendRoutes);
 app.use('/submit', backendRoutes);
 
 // api endpoint route
-app.use('/api', apiRoutes);
+const corsOptions = { // allow the server to accept GET & POST requests from external clients
+    methods: "GET, POST"
+}
+app.use('/api', cors(corsOptions), apiRoutes);
 
 // error route
 app.use(errorController.get404);
