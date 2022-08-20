@@ -2,19 +2,47 @@ const db = require('./db');
 const tableName = 'profiles';
 
 async function createProfile(profile) {
-    return db(tableName).insert(profile);
+    let result;
+    try {
+        result = await db(tableName).insert(profile);
+    }
+    catch (e) {
+        result = {};
+    }
+    return result;
 }
 
 async function getProfile(code) {
-    return db(tableName).select('*').where('code', code);
+    let result;
+    try {
+        result = db(tableName).select('*').where('code', code);
+    }
+    catch (e) {
+        result = {};
+    }
+    return result;
 }
 
 async function listAllProfilesForLogin() {
-    return db(tableName).select('code').select('nric');
+    let result;
+    try {
+        result = db(tableName).select('code').select('nric');
+    }
+    catch (e) {
+        result = {};
+    }
+    return result;
 }
 
 async function dropTable() {
-    return db.schema.dropTable(tableName);
+    let result;
+    try {
+        result = db.schema.dropTable(tableName);
+    }
+    catch (e) {
+        result = {};
+    }
+    return result;
 }
 
 async function createTableIfNotExist() {
@@ -22,12 +50,12 @@ async function createTableIfNotExist() {
     if (!exists) {
         await db.schema.createTable(tableName, (table) => {
             table.increments('id').primary().notNullable();
-            table.text('code').notNullable();
+            table.text('code').notNullable().unique();
             table.text('fullName').notNullable();
             table.text('sex').notNullable();
             table.text('race').notNullable();
-            table.text('email').notNullable().unique();
-            table.text('nric').notNullable().unique();
+            table.text('email').notNullable();
+            table.text('nric').notNullable();
             table.text('entityName');
             table.text('UEN');
         });
