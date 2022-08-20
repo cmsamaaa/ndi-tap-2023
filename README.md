@@ -4,7 +4,7 @@
 
 For this technical assessment, I will be developing a fullstack project. This project is a prototype that solves problem
 statement defined below, written in Node.js with JavaScript, using Pug template engine, Express.js framework for
-backend, and basic data manipulation with SQLite3.
+backend, and basic data storage/manipulation with SQLite3.
 
 This application is also deployed and hosted on [Heroku](https://ndi-tap-2023.herokuapp.com/).
 
