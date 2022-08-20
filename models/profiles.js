@@ -31,9 +31,8 @@ async function createTableIfNotExist() {
             table.text('entityName');
             table.text('UEN');
         });
-    }
 
-    await createProfile({
+        await createProfile({
             code: 'SG12345678Z',
             fullName: 'John Doe',
             sex: 'Male',
@@ -42,7 +41,7 @@ async function createTableIfNotExist() {
             nric: 'S9025123Z'
         });
 
-    await createProfile({
+        await createProfile({
             code: 'SG11111111A',
             fullName: 'Jane Doe',
             sex: 'Female',
@@ -52,6 +51,7 @@ async function createTableIfNotExist() {
             entityName: 'Arrow Goldsmith',
             UEN: '53234923K'
         });
+    }
 }
 
 module.exports = {
