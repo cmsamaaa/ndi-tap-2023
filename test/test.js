@@ -215,11 +215,12 @@ describe('Check frontend paths', () => {
     });
 
     describe('/POST /submit/register 400 | POST empty request body', () => {
-        it('it should display the `Profile Card` page', (done) => {
+        it('it should display the `Register` page with 400 status code', (done) => {
             tester.request(app)
                 .post('/submit/register')
                 .end((err, res) => {
                     res.should.have.status(400);
+                    res.redirects[0].split('/')[3].should.eq('register?result=false');
                     done();
                 });
         });
@@ -251,7 +252,7 @@ describe('Check frontend paths', () => {
     });
 
     describe('/GET /asdfghjkl 404', () => {
-        it('it should display the `Error` page when an invalid path is entered', (done) => {
+        it('it should display the `Error` view when an invalid path is entered', (done) => {
             tester.request(app)
                 .get('/asdfghjkl')
                 .end((err, res) => {
